@@ -1,0 +1,41 @@
+[
+    {
+        "model": "blog.post",
+        "pk": 1,
+        "fields": {
+            "autor": "Alice Silva",
+            "titulo": "Como Aprender Django",
+            "resumo": "Um guia completo para começar com Django.",
+            "conteudo": "Django é um framework poderoso para desenvolvimento web. Neste guia, vamos explorar desde a instalação até a criação de aplicações complexas.",
+            "data": "2024-09-14T10:00:00Z",
+            "categoria": 1,
+            "tag": [1, 2]
+        }
+    },
+    {
+        "model": "blog.post",
+        "pk": 2,
+        "fields": {
+            "autor": "Carlos Souza",
+            "titulo": "Dicas para Desenvolvimento Web",
+            "resumo": "Melhores práticas para criar aplicações web eficientes e escaláveis.",
+            "conteudo": "Neste post, discutiremos algumas das melhores práticas para desenvolvimento web, incluindo otimização de performance e segurança.",
+            "data": "2024-09-15T12:00:00Z",
+            "categoria": 2,
+            "tag": [2, 3]
+        }
+    },
+    {
+        "model": "blog.post",
+        "pk": 3,
+        "fields": {
+            "autor": "Fernanda Oliveira",
+            "titulo": "Entendendo Modelos no Django",
+            "resumo": "Como definir e usar modelos em Django para persistência de dados.",
+            "conteudo": "Modelos são a parte central de um aplicativo Django. Neste post, veremos como definir modelos e usá-los para interagir com o banco de dados.",
+            "data": "2024-09-16T14:00:00Z",
+            "categoria": 1,
+            "tag": [1, 3]
+        }
+    }
+]

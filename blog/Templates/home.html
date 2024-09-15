@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if post_destaque %}
+
+<div class="card p-5 mb-5 bg-secondary text-white">
+    <div class="col m-2 px-3">
+        <h1 class="display-4 mb-4 mt-1">{{post_destaque.titulo}}</h1>
+    </div>
+    <p class="lead mb-2">
+        {{post_destaque.resumo}}
+    </p>
+    <div class="lead mb-2">
+        <a href="#" class="text-white">Ler mais...</a>
+    </div>
+</div>
+{% else %}
+    <p>Nenhum post disponível no momento.</p>
+{% endif %}
+
+<div class="row">
+{% for post in post_secundario %}
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="card-body">
+                <strong>{{post.categoria}}</strong>
+                <h3>{{post.titulo}}</h3>
+                <p class="card-text">{{post.resumo}}</p>
+                <div class="lead mb-2">
+                    <a href="#">Ler mais...</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+</div>
+
+
+
+{% endblock %}
