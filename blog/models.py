@@ -35,7 +35,7 @@ class Post(models.Model):
     conteudo = models.TextField()
     data = models.DateTimeField()
     categoria = models.ForeignKey(Categoria,on_delete=models.PROTECT, related_name='posts')
-    tag = models.ManyToManyField(Tag,related_name='posts')
+    tag = models.ManyToManyField(Tag,related_name='posts', blank=True)
     
     def __str__(self):
         return f"{self.titulo} por {self.autor}"

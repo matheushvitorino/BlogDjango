@@ -8,11 +8,12 @@
     <div class="col m-2 px-3">
         <h1 class="display-4 mb-4 mt-1">{{post_destaque.titulo}}</h1>
     </div>
+    <div class="mb-2 px-3">{{post_destaque.data}}</div>
     <p class="lead mb-2">
         {{post_destaque.resumo}}
     </p>
     <div class="lead mb-2">
-        <a href="#" class="text-white">Ler mais...</a>
+        <a class="link-light icon-link gap-0 icon-link-hover stretched-link"href="#"><i>Ler mais</i></a>
     </div>
 </div>
 {% else %}
@@ -22,18 +23,36 @@
 <div class="row">
 {% for post in post_secundario %}
     <div class="col-md-6 mb-4">
-        <div class="card">
+        <div class="card bg-dark" style="height:300px;">
             <div class="card-body">
-                <strong>{{post.categoria}}</strong>
-                <h3>{{post.titulo}}</h3>
-                <p class="card-text">{{post.resumo}}</p>
-                <div class="lead mb-2">
-                    <a href="#">Ler mais...</a>
+                <strong class="rounded p-1 m-2 text-bg-primary">{{post.categoria}}</strong>                
+                <h3 class="text-white ms-1 mt-3">{{post.titulo}}</h3>
+                <div class="text-secondary">{{post.data}}</div>
+                <div class="text-white mt-3">{{post.resumo}}</p>
+
+                <a class="icon-link gap-0 icon-link-hover stretched-link"href="#"><i>Ler mais</i></a>
+
                 </div>
             </div>
         </div>
     </div>
 {% endfor %}
+</div>
+
+<div class="row">
+    <div class="col-8"></div>
+
+    <div class="col">
+        <ul class="">
+            {% for post in posts%}
+            <a class="list-group-item icon-link link-primary p-2" href="#">
+            {{post.titulo}}
+
+            </a>
+            {%endfor%}
+        </ul>
+    </div>
+
 </div>
 
 

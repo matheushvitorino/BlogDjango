@@ -1,5 +1,6 @@
-from django.shortcuts import render, HttpResponse
-from .models import Post
+from django.shortcuts import render, HttpResponse, get_object_or_404,redirect
+from .models import Post,Categoria,Tag
+from datetime import datetime,timezone
 
 # Create your views here.
 def home(request):
@@ -10,8 +11,44 @@ def home(request):
     post_destaque = posts.first()
     
     # exclui o primeiro da fila, e pega os outros
-    post_secundario = posts.exclude(id=post_destaque.id)[:3]
+    post_secundario = posts.exclude(id=post_destaque.id)[:2]
+    
+    
     
     return render(
         request,'home.html',
-        {'post_destaque':post_destaque,'post_secundario':post_secundario })
+        {'post_destaque':post_destaque,'post_secundario':post_secundario, 'posts':posts})
+    
+    
+def postar(request):
+    categoria_tags = Categoria.objects.all()
+    tag_box = Tag.objects.all()
+    if request.method == 'POST':
+        
+        autor = 'Matheus'
+        titulo = request.POST.get('titulo')      
+        data = datetime.now()
+        resumo = request.POST.get('resumo')
+        conteudo = request.POST.get('conteudo')
+        tag_id = request.POST.getlist('tag')#getlist chama por lista
+        
+        
+        categoria_id = int(request.POST.get('categoria', 0))  
+        categoria = get_object_or_404(Categoria,id=categoria_id)# Busca a categoria pelo ID 
+        
+        
+        post = Post(autor=autor, titulo = titulo, resumo = resumo,  conteudo = conteudo, data = data, categoria = categoria)
+        
+        post.save() 
+
+        
+        if tag_id:
+            for tag_id in tag_id:
+                tag = get_object_or_404(Tag,id=tag_id)
+                post.tag.add(tag)#O método add() é usado para adicionar uma ou mais instâncias ao campo ManyToManyField
+
+        
+        return redirect('postar')
+        
+    return render(request,'postar.html',{ 'categoria_tags': categoria_tags, 'tag_box': tag_box})
+    
