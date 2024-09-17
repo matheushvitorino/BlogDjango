@@ -1,11 +1,24 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="container">
+
     {% if post.id %}
-        <h1>{{post.titulo}}</h1>
-        <label>criado por {{post.autor}}</label>
-        <div>{{post.data}}</div>
-        <p>{{post.conteudo}}</p>
+    <label class=" rounded text-success m-1 p-1"><strong>{{post.categoria}}</strong></label>
+        <h1 class="display-2 text-justify p-2"><strong>{{post.titulo}}</strong></h1>
+
+        <div class="row text-justify mt-4 p-1">
+            <p class="lead"><strong>{{post.resumo}}</strong></p>
+        </div>
+        <label class="text-secondary h5"><strong>criado por {{post.autor}}</strong></label>
+        <div class="ps-1"><small>{{post.data}}</small></div>
+
+
+        <div class="row pe-4 text-justify">
+            <div class="col p-5">
+                <p class="lead">{{post.conteudo}}</p>
+            </div>
+            
+        </div>
+
         <p>
         {%if post.tag.exists %}
             {{post.tag.all|join:', '}}
@@ -14,5 +27,5 @@
 
         
     {% endif %}
-</div>
+
 {% endblock %}
