@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    {% if post.id %}
+        <h1>{{post.titulo}}</h1>
+        <label>criado por {{post.autor}}</label>
+        <div>{{post.data}}</div>
+        <p>{{post.conteudo}}</p>
+        <p>
+        {%if post.tag.exists %}
+            {{post.tag.all|join:', '}}
+        {% endif %}
+        </p>
+
+        
+    {% endif %}
+</div>
+{% endblock %}

@@ -51,4 +51,9 @@ def postar(request):
         return redirect('postar')
         
     return render(request,'postar.html',{ 'categoria_tags': categoria_tags, 'tag_box': tag_box})
+
+
+def post(request, id):
+    post = get_object_or_404(Post, id=id)
+    return render(request,'post.html',{'post':post})
     
