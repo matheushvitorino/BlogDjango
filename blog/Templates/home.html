@@ -42,21 +42,49 @@
 </div>
 
 <div class="row">
-    <div class="col-8"></div>
+    <div class="col-8">
+        {% if post_inicial %}
+        <label class=" rounded text-success m-1 p-1"><strong>{{post_inicial.categoria}}</strong></label>
+            <h1 class="display-2 text-justify p-2"><strong>{{post_inicial.titulo}}</strong></h1>
+    
+            <div class="row text-justify mt-4 p-1">
+                <p class="lead"><strong>{{post_inicial.resumo}}</strong></p>
+            </div>
+            <label class="text-secondary h5"><strong>criado por {{post_inicial.autor}}</strong></label>
+            <div class="ps-1"><small>{{post_inicial.data}}</small></div>
+    
+    
+            <div class="row pe-4 text-justify">
+                <div class="col p-5">
+                    <p class="lead">{{post_inicial.conteudo}}</p>
+                </div>
+                
+            </div>
+    
+            <p>
+            {%if post_inicial.tag.exists %}
+                {{post.tag.all|join:', '}}
+            {% endif %}
+            </p>
+        {% endif %}
+            
+        
+    </div>
 
     <div class="col">
         <ul class="">
             {% for post in posts%}
-            <a class="list-group-item icon-link link-primary p-2" href="{% url 'post' id=post.id %}">
-            {{post.titulo}}
-
-            </a>
-            <br>
+                <a class="list-group-item icon-link link-primary p-2" href="{% url 'post' id=post.id %}">
+                    {{post.titulo}}
+                </a>
+                <br>
             {%endfor%}
         </ul>
     </div>
 
+
 </div>
+
 
 
 

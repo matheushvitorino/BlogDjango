@@ -30,8 +30,8 @@ class Tag(models.Model):
 
 class Post(models.Model):
     autor = models.CharField(max_length=50)
-    titulo = models.CharField(max_length=100)
-    resumo = models.CharField(max_length=150)
+    titulo = models.CharField(max_length=150)
+    resumo = models.CharField(max_length=250)
     conteudo = models.TextField()
     data = models.DateTimeField()
     categoria = models.ForeignKey(Categoria,on_delete=models.PROTECT, related_name='posts')
