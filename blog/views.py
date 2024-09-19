@@ -12,11 +12,10 @@ def home(request):
     
     # exclui o primeiro da fila, e pega os outros
     post_secundario = posts.exclude(id=post_destaque.id)[:2]
+    
 
     post_inicial = Post.objects.all()[3]
 
-        
-  
     return render(
         request,'home.html',
         {'post_destaque':post_destaque,'post_secundario':post_secundario, 'posts':posts, 'post_inicial':post_inicial})
@@ -51,6 +50,12 @@ def postar(request):
 
 
 def post(request, id):
+    
     post = get_object_or_404(Post, id=id)
-    return render(request,'post.html',{'post':post})
+    
+    #metodo de paginação   
+    proximo_post = Post.objects.filter(id__gt=id).order_by('id').first()
+    post_anterior = Post.objects.filter(id__lt=id).order_by('-id').last()
+    
+    return render(request,'post.html',{'post':post,'proximo_post':proximo_post,'post_anterior':post_anterior})
     
