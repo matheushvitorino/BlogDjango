@@ -62,7 +62,7 @@
             </div>
     
             <p>
-            {%if post_inicial.tag.exists %}
+            {%if inicial.tag.exists %}
                 {{post.tag.all|join:', '}}
             {% endif %}
             </p>
@@ -78,7 +78,7 @@
                     {{post.titulo}}
                 </a>
                 <br>
-            {%endfor%}
+            {% endfor %}
         </ul>
     </div>
 
