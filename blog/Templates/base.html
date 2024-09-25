@@ -33,32 +33,17 @@
                     </ul>
                     <ul class="navbar-nav d-flex justify-content-between mx-2">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Login</a>
+                            <a class="nav-link" href="{% url 'login'%}">Login</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
-        <!-- Seção Conteudo -->
+        <!-- Seção Conteudo --> 
         <main class="container mt-5">
          {% block content %}
          {% endblock %}
          </main>
-         <nav aria-label="Paginacao">
-            <ul class="pagination justify-content-center">
-                    {% if post_anterior %}
-                        <li class="page-item"><a class="page-link" href="{% url 'post' post_anterior.id %}">Previous</a></li>
-                    {% endif %}
-    
-                    {% if proximo_post %}
-                        <li class="page-item">
-                            <a class="page-link" href="{% url 'post' proximo_post.id %}">Next</a>
-                        </li>
-                    {% endif %}
-            </ul>
-          </nav>
-
-
 
 
     </div>

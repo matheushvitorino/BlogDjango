@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
 
-    {% if post %}
     <label class=" rounded text-success m-1 p-1"><strong>{{post.categoria}}</strong></label>
         <h1 class="display-2 text-justify p-2"><strong>{{post.titulo}}</strong></h1>
 
@@ -25,21 +24,18 @@
         {% endif %}
         </p>
 
-
+    <div class="pagination">
+        {% if post_anterior %}
+            <a href="{%url 'post' post_anterior.id %}">Anterior</a>
+        {% endif %}
         
-    {% endif %}
-    <nav aria-label="Paginacao">
-        <ul class="pagination justify-content-center">
-                {% if post_anterior %}
-                    <li class="page-item"><a class="page-link" href="{% url 'post' post_anterior.id %}">Previous</a></li>
-                {% endif %}
+        <span>Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</span>
+    
+        {% if proximo_post %}
+            <a href="{% url 'post' proximo_post.id %}">Próximo</a>
+        {% endif %}
+    </div>
 
-                {% if proximo_post %}
-                    <li class="page-item">
-                        <a class="page-link" href="{% url 'post' proximo_post.id %}">Next</a>
-                    </li>
-                {% endif %}
-        </ul>
-      </nav>
+
 
 {% endblock %}

@@ -1,4 +1,5 @@
 from django.shortcuts import render, HttpResponse, get_object_or_404,redirect
+from django.core.paginator import Paginator
 from .models import Post,Categoria,Tag
 from datetime import datetime,timezone
 
@@ -52,10 +53,18 @@ def postar(request):
 def post(request, id):
     
     post = get_object_or_404(Post, id=id)
+    lista_post = Post.objects.all().order_by('id')
     
-    #metodo de paginação   
-    proximo_post = Post.objects.filter(id__gt=id).order_by('id').first()
-    post_anterior = Post.objects.filter(id__lt=id).order_by('-id').last()
+    #metodo paginator
+    paginator = Paginator(lista_post, 1)
+    post_index = list(lista_post).index(post)
+    page_num = post_index+1
     
-    return render(request,'post.html',{'post':post,'proximo_post':proximo_post,'post_anterior':post_anterior})
+    page_obj = paginator.get_page(page_num)
+    
+    proximo_post = Post.objects.filter(id__gt=post.id).first()  # Próximo post
+    post_anterior = Post.objects.filter(id__lt=post.id).last()
+
+    
+    return render(request,'post.html', {'post':post, 'page_obj':page_obj,'proximo_post':proximo_post, 'post_anterior':post_anterior})
     
