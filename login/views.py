@@ -1,9 +1,11 @@
-from django.shortcuts import render,HttpResponse
+from django.shortcuts import redirect, render,HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as login_django
 from django.contrib.auth import logout as logout_django
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+
 
 def registrar(request):
     if request.method == 'GET':
@@ -32,6 +34,7 @@ def login(request):
         senha = request.POST.get('senha')
         manter_conectado = request.POST.get('manter_conectado')
         autenticacao = authenticate(username = usuario, password = senha)
+        
         if autenticacao:
             login_django(request, autenticacao)
             if manter_conectado:
@@ -39,14 +42,18 @@ def login(request):
             else:
                 request.session.set_expiry(0)
             
-            return HttpResponse('Login realizado')
+            return redirect('home')
         else:
-            return HttpResponse('Erro')
+            messages.error(request, "Usuario ou senha incorretos.")
+            return redirect('login')
         
-@login_required(login_url="/login/login")
+    
 def logout(request):
-    logout_django(request)
-    return render(request,'login.html')
+    if request.user.is_authenticated:
+        logout_django(request)
+        return redirect('login')
+    else:
+        return redirect('home')
         
  
  #teste pra ser excluido depois    

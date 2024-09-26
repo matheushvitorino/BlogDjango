@@ -2,6 +2,7 @@ from django.shortcuts import render, HttpResponse, get_object_or_404,redirect
 from django.core.paginator import Paginator
 from .models import Post,Categoria,Tag
 from datetime import datetime,timezone
+from .decorators import login_required_para_postar
 
 # Create your views here.
 def home(request):
@@ -21,7 +22,7 @@ def home(request):
         request,'home.html',
         {'post_destaque':post_destaque,'post_secundario':post_secundario, 'posts':posts, 'post_inicial':post_inicial})
     
-    
+@login_required_para_postar  
 def postar(request):
     categoria_tags = Categoria.objects.all()
     tag_box = Tag.objects.all()
@@ -67,4 +68,7 @@ def post(request, id):
 
     
     return render(request,'post.html', {'post':post, 'page_obj':page_obj,'proximo_post':proximo_post, 'post_anterior':post_anterior})
+
+
+
     

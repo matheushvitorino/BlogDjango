@@ -5,7 +5,17 @@
       <div class="col-4">
         <form class="form-control p-5" action="{% url 'login' %}" method="POST">
           <div class="mb-3">
-            <label for="Login" class="form-label">Login</label>{% csrf_token %}
+            <label for="Login" class="form-label">Login</label>
+            {% if messages %}
+            <ul class="list-group mb-3">
+              {% for message in messages %}
+
+                  <li class="list-group-item bg-danger text-white">{{ message }}</li>
+
+              {% endfor %}
+            </ul>
+            {% endif %}
+            {% csrf_token %}
             <input type="text" class="form-control" name="usuario" >
           </div>
           <div class="mb-3">
