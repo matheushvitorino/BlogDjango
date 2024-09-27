@@ -42,18 +42,18 @@ def login(request):
             else:
                 request.session.set_expiry(0)
             
-            return redirect('home')
+            return redirect('blog:home')
         else:
             messages.error(request, "Usuario ou senha incorretos.")
-            return redirect('login')
+            return redirect('login:login')
         
     
 def logout(request):
     if request.user.is_authenticated:
         logout_django(request)
-        return redirect('login')
+        return redirect('login:login')
     else:
-        return redirect('home')
+        return redirect('blog:home')
         
  
  #teste pra ser excluido depois    

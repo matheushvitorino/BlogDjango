@@ -15,7 +15,7 @@
     </p>
     {{post_destaque.id}}
     <div class="lead mb-2">
-        <a class="link-light icon-link gap-0 icon-link-hover stretched-link" href="{% url 'post' id=post_destaque.id %}"><i>Ler mais</i></a>
+        <a class="link-light icon-link gap-0 icon-link-hover stretched-link" href="{% url 'blog:post' id=post_destaque.id %}"><i>Ler mais</i></a>
     </div>
 </div>
 {% else %}
@@ -32,7 +32,7 @@
                 <div class="text-secondary">{{post.data}}</div>
                 <div class="text-white mt-3">{{post.resumo}}</p>
 
-                <a class="icon-link gap-0 icon-link-hover stretched-link"href="{% url 'post' id=post.id %}"><i>Ler mais</i></a>
+                <a class="icon-link gap-0 icon-link-hover stretched-link"href="{% url 'blog:post' id=post.id %}"><i>Ler mais</i></a>
 
                 </div>
             </div>
@@ -74,7 +74,7 @@
     <div class="col">
         <ul class="">
             {% for post in posts%}
-                <a class="list-group-item icon-link link-primary p-2" href="{% url 'post' id=post.id %}">
+                <a class="list-group-item icon-link link-primary p-2" href="{% url 'blog:post' id=post.id %}">
                     {{post.titulo}}
                 </a>
                 <br>

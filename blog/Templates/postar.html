@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content%}
 
-<form class="form-control" action="{% url 'postar' %}" method="post">{% csrf_token %}
+<form class="form-control" action="{% url 'blog:postar' %}" method="post">{% csrf_token %}
 
     <div>
         <input class="form-control mt-1" type="text" name="titulo" placeholder="Titulo" >

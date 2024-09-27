@@ -9,7 +9,7 @@
 <body>
     <div class="d-flex justify-content-center align-items-center " style="height: 100vh;">
         <div class="text-center">
-          <form class="form-control p-5" action="{% url 'registrar' %}" method="POST">{% csrf_token %}
+          <form class="form-control p-5" action="{% url 'login:registrar' %}" method="POST">{% csrf_token %}
             <label class="form-label pb-4 display-6">Registrar-se</label>
               <div class="row">
 

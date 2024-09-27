@@ -3,7 +3,7 @@
 <div class="container text-start"></div>
     <div class="row justify-content-center align-items-center vh-100">
       <div class="col-4">
-        <form class="form-control p-5" action="{% url 'login' %}" method="POST">
+        <form class="form-control p-5" action="{% url 'login:login' %}" method="POST">
           <div class="mb-3">
             <label for="Login" class="form-label">Login</label>
             {% if messages %}
@@ -31,7 +31,7 @@
 
           <div class="text-start">
             <ul class="ps-1">
-              <p>Não tem conta?<a href="{% url 'registrar' %}"> Inscreva-se</a></p>                
+              <p>Não tem conta?<a href="{% url 'login:registrar' %}"> Inscreva-se</a></p>                
             </ul>
           </div>
       </form>

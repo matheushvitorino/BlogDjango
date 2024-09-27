@@ -28,7 +28,7 @@ def postar(request):
     tag_box = Tag.objects.all()
     if request.method == 'POST':
         
-        autor = 'Matheus'
+        autor = request.user.username()
         titulo = request.POST.get('titulo')      
         data = datetime.now()
         resumo = request.POST.get('resumo')
@@ -46,7 +46,7 @@ def postar(request):
                 tag = get_object_or_404(Tag,id=tag_id)
                 post.tag.add(tag)#O método add() é usado para adicionar uma ou mais instâncias ao campo ManyToManyField
 
-        return redirect('postar')
+        return redirect('blog:postar')
         
     return render(request,'postar.html',{ 'categoria_tags': categoria_tags, 'tag_box': tag_box})
 
