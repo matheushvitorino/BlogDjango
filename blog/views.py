@@ -28,7 +28,7 @@ def postar(request):
     tag_box = Tag.objects.all()
     if request.method == 'POST':
         
-        autor = request.user.username()
+        autor = request.user.first_name
         titulo = request.POST.get('titulo')      
         data = datetime.now()
         resumo = request.POST.get('resumo')

@@ -36,6 +36,25 @@
         {% endif %}
     </div>
 
+<h3>Deixe um comentário:</h3>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Update">
+</form> 
+
+<h3>Comentários:</h3>
+{% for comentario in post.comentarios.all %}
+    <div>
+        <p><strong>{{ comentario.usuario.username }}</strong>: {{ comentario.comentariopostado }}</p>
+        <p><em>{{ comentario.criado }}</em></p>
+    </div>
+{% empty %}
+    <p>Nenhum comentário ainda.</p>
+{% endfor %}
+
+
+
 
 
 {% endblock %}
