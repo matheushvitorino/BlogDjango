@@ -37,16 +37,18 @@
     </div>
 
 <h3>Deixe um comentário:</h3>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Update">
-</form> 
+<div class="row">
+        <form method="post" action="{% url 'blog:addcomentario' id=post.id %}">
+            {% csrf_token %}
+            <textarea class="form-control"name="conteudo"></textarea>
+            <input class="btn btn-primary"type="submit" value="Enviar">
+        </form> 
+</div>
 
 <h3>Comentários:</h3>
-{% for comentario in post.comentarios.all %}
+{% for comentario in lista_comentarios %}
     <div>
-        <p><strong>{{ comentario.usuario.username }}</strong>: {{ comentario.comentariopostado }}</p>
+        <p><strong>{{ comentario.autor.username }}</strong>: {{ comentario.conteudo }}</p>
         <p><em>{{ comentario.criado }}</em></p>
     </div>
 {% empty %}

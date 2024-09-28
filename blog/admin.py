@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post,Categoria,Tag
+from .models import Post,Categoria,Tag,Comentario
 
 # Register your models here.
 class PostAdmin(admin.ModelAdmin):
@@ -14,9 +14,14 @@ class CategoriaAdmin(admin.ModelAdmin):
 class TagAdmin(admin.ModelAdmin):
     list_display = ('nome','slug')
     search_fields = ('nome',)
+    
+class ComentarioAdmin(admin.ModelAdmin):
+    list_display = ('post_id','autor','conteudo','criado')
+    search_fields = ('autor',)
 
 
 admin.site.register(Post, PostAdmin)
 admin.site.register(Tag)
 admin.site.register(Categoria, CategoriaAdmin)
+admin.site.register(Comentario, ComentarioAdmin)
 
